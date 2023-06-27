@@ -1,0 +1,84 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="margin-top: 63px">
+  <div class="d-flex justify-content-center">
+    <h2>Editar de productos</h2>
+  </div>
+  <div class="d-flex justify-content-center">
+    <p class="category-description">
+      Por favor, completa la siguiente información para crear un nuevo producto. Todos los campos son obligatorios.
+    </p>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="item">
+      <h3>Foto de producto</h3>
+      <figure>
+        <img
+          class="img-thumbnail"
+          style="width: 200px; height: auto; border: none;"
+          onerror="this.src='../../assets/images/noDispo.png'"
+          [src]="'data:image/png;base64,' + productData.base64Producto"
+        />
+      </figure>
+      <p class="price">Producto</p>
+      <p class="special">Edita la info:</p>
+      <form
+        #frmLogin="ngForm"
+        class="col-md-12"
+        (submit)="frmLogin.form.valid && updateProducto(frmLogin)"
+        novalidate
+      >
+        <div class="mb-3">
+          <label for="disabledTextInput" class="form-label">Nombre</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            placeholder="Nombre de producto"
+            #name="ngModel"
+            [(ngModel)]="productData.nombreProducto"
+            [ngClass]="{ 'is-valid': frmLogin.submitted && name.invalid }"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="disabledTextInput" class="form-label">Detalle</label>
+          <input
+            type="text"
+            id="detalle"
+            name="detalle"
+            class="form-control"
+            placeholder="Detalle de producto"
+            #detalle="ngModel"
+            [(ngModel)]="productData.detalleProducto"
+            [ngClass]="{ 'is-valid': frmLogin.submitted && detalle.invalid }"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="disabledTextInput" class="form-label">Valor</label>
+          <input
+            type="number"
+            id="valor"
+            name="valor"
+            class="form-control"
+            placeholder="Valor de producto"
+            #valor="ngModel"
+            [(ngModel)]="productData.valorProducto"
+            [ngClass]="{ 'is-valid': frmLogin.submitted && valor.invalid }"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary btn-block mb-0"
+          style="
+            background-color: #ffb03b !important;
+            border-color: #ffb03b !important;
+          "
+        >
+          ACTUALIZAR
+        </button>
+      </form>
+    </div>
+  </div>
+</main>

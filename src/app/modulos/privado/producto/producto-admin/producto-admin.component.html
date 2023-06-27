@@ -1,0 +1,131 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="margin-top: 63px">
+  <div class="pt-3 pb-2 border-bottom">
+    <div class="section-title">
+      <h2>Listado de <span>nuestros productos</span></h2>
+      <p>DashBoard de Productos</p>
+    </div>
+    <div class="col-md-11 m-md-auto" *ngIf="cargaFinalizada; else spinner">
+      <table class="table table-striped">
+        <thead class="table-warning">
+          <tr>
+            <th class="text-center" style="width: 5%">Nro</th>
+            <th style="width: 20%">Nombre</th>
+            <th style="width: 30%">Detalle</th>
+            <th style="width: 8%">Valor</th>
+            <th style="width: 10%">Imgaen</th>
+            <th style="width: 10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let objProductos of arrgloProductos; let i = index">
+            <td class="align-middle text-center">
+              <small>{{ i + 1 }}</small>
+            </td>
+            <td class="align-middle">
+              <small> {{ objProductos.nombreProducto }} </small>
+            </td>
+            <td class="align-middle">
+              <small> {{ objProductos.detalleProducto }} </small>
+            </td>
+            <td class="align-middle">
+              <small> {{ objProductos.valorProducto }} </small>
+            </td>
+            <td class="align-middle">
+              <img
+                [src]="'data:image/png;base64,' + objProductos.base64Producto"
+                alt="ciudad"
+                class="img-fluid"
+                onerror="this.src='../../assets/images/noDisponible.png';"
+                style="
+                  height: 85px;
+                  width: auto;
+                  display: block;
+                  margin-left: auto;
+                  margin-right: auto;
+                "
+              />
+            </td>
+            <td class="text-center align-middle">
+              <a
+                [routerLink]="[
+                  '/private/product/searchoneproduct',
+                  objProductos.codProducto
+                ]"
+                style="cursor: pointer; color: black"
+              >
+                <i class="bi bi-search"></i>
+              </a>
+              &nbsp;
+
+              <a
+                [routerLink]="[
+                  '/private/product/editproduct',
+                  objProductos.codProducto
+                ]"
+                style="cursor: pointer"
+              >
+                <i
+                  class="fa-regular fa-pen-to-square"
+                  style="color: #ffa012"
+                ></i>
+              </a>
+              &nbsp;
+              <i style="cursor: pointer;"
+                (click)="abrirModal(ventanaEliminar, objProductos)"
+                class="fa-solid fa-trash-can fa-sm text-danger"
+              >
+              </i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+<ng-template #spinner>
+  <div class="col-md text-center">
+    <div
+      class="spinner-border ml-auto"
+      style="width: 4rem; height: 4rem; color: #ffa012"
+      role="status"
+      aria-hidden="true"
+    ></div>
+    <div class="col-md text-center">
+      <span style="font-size: 25">
+        <h2>Cargando información...</h2>
+      </span>
+    </div>
+  </div>
+</ng-template>
+<ng-template #ventanaEliminar>
+  <div class="modal-header bg-dark text-white" style="padding: 4px">
+    <h5 class="modal-title">{{ modalTitulo }}</h5>
+    <button
+      type="button"
+      class="btn btn-sm text-white"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>
+      {{ modalCuerpo }}<br />
+      <strong>{{ modalContenido }}</strong>
+    </p>
+  </div>
+  <div class="modal-footer" style="padding: 4px">
+    <button type="button" class="btn btn-danger btn-sm" (click)="btnEliminar()">
+      Eliminar
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-dark btn-sm"
+      (click)="btnCancelar()"
+    >
+      Cancelar
+    </button>
+  </div>
+</ng-template>
+<!-- Modal para borrar: Fin -->

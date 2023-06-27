@@ -1,0 +1,74 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="margin-top: 63px">
+  <div class="pt-3 pb-2 border-bottom">
+    <div class="section-title">
+      <h2>Detalle de <span>producto</span></h2>
+      <p>Los mejores productos en cada ciudad de Colombia.</p>
+    </div>
+    <div class="col-md-6 m-md-auto" *ngIf="cargaFinalizada; else spinner">
+      <div *ngIf="product" class="card">
+        <img
+          [src]="'data:image/png;base64,' + product.base64Producto"
+          alt="ciudad"
+          class="img-fluid"
+          onerror="this.src='../../assets/images/noDisponible.png';"
+          style="
+            height: 150px;
+            width: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+          "
+        />
+        <div class="card-body">
+          <h2 style="color: #ffa012" class="card-title">
+            <span>{{ product.nombreProducto }}</span>
+          </h2>
+          <p class="card-title">{{ product.detalleProducto }}</p>
+          <p class="card-title">Valor: ${{ product.valorProducto }}</p>
+          <a
+            [routerLink]="[
+              '/private/product/editproduct/',
+              product.codProducto
+            ]"
+            class="btn btn-warning btn-sm"
+            style="color: white"
+            >Editar
+            <i class="fa-regular fa-pen-to-square" style="color: white"></i
+          ></a>
+          &nbsp;
+          <a
+            [routerLink]="[
+              '/private/product/editproductphoto',
+              product.codProducto
+            ]"
+            class="btn btn-warning btn-sm"
+            style="color: white"
+            >Editar foto <i class="bi bi-camera" style="color: white"></i>
+          </a>
+          &nbsp;
+          <a
+            [routerLink]="['/private/product/manageproduct']"
+            class="btn btn-warning btn-sm"
+            style="color: white"
+            >Lista productos <i class="bi bi-list-ol" style="color: white"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<ng-template #spinner>
+  <div class="col-md text-center">
+    <div
+      class="spinner-border ml-auto"
+      style="width: 4rem; height: 4rem; color: #ffa012"
+      role="status"
+      aria-hidden="true"
+    ></div>
+    <div class="col-md text-center">
+      <span style="font-size: 25">
+        <h2>Cargando información...</h2>
+      </span>
+    </div>
+  </div>
+</ng-template>

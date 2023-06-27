@@ -1,0 +1,87 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="margin-top: 63px">
+  <div class="d-flex justify-content-center">
+    <h2>Editar de productos</h2>
+  </div>
+  <div class="d-flex justify-content-center">
+    <p class="category-description">
+      Por favor, completa la siguiente información para crear un nuevo producto.
+      Todos los campos son obligatorios.
+    </p>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="item">
+      <h3>Foto de producto</h3>
+      <div class="d-flex flex-row mb-3">
+        <figure>
+          <img
+            class="img-thumbnail"
+            style="width: 200px; height: auto; border: none"
+            onerror="this.src='../../assets/images/noDispo.png'"
+            [src]="'data:image/png;base64,' + producDataImg.base64Producto"
+          />
+        </figure>
+        <div class="d-flex justify-content-center">
+          <i
+            class="bi bi-arrow-right-circle align-self-center"
+            style="color: #ffb03b; font-size: 35px;"
+          ></i>
+        </div>
+
+        <figure>
+          <img
+            class="img-thumbnail"
+            style="width: 200px; height: auto; border: none"
+            onerror="this.src='../../assets/images/noDispo.png'"
+            [src]="productData.base64Producto"
+          />
+        </figure>
+      </div>
+
+      <p class="price">{{ productData.nombreProducto }}</p>
+      <p class="special">Edita la info:</p>
+      <form
+        #frmLogin="ngForm"
+        class="col-md-12"
+        (submit)="frmLogin.form.valid && updateProducto(frmLogin)"
+        novalidate
+      >
+        <div class="mb-3">
+          <label for="disabledTextInput" class="form-label">Foto</label>
+          <div class="input-group">
+            <input
+              type="text"
+              id="foto"
+              name="foto"
+              placeholder="Agrega una foto de producto"
+              class="form-control form-control-sm"
+              [(ngModel)]="productData.publicoFotoProducto"
+            />
+            <a
+              class="btn btn-sm"
+              style="background-color: #ffb03b; color: white; width: 30px"
+              (click)="cajaOculta.click()"
+            >
+              <span class="input-group d-flex justify-content-center">+</span>
+              <input
+                #cajaOculta
+                type="file"
+                style="display: none"
+                (change)="seleccionarFoto($event)"
+              />
+            </a>
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary btn-block mb-0"
+          style="
+            background-color: #ffb03b !important;
+            border-color: #ffb03b !important;
+          "
+        >
+          ACTUALIZAR
+        </button>
+      </form>
+    </div>
+  </div>
+</main>

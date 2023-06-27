@@ -1,0 +1,51 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="margin-top: 63px">
+  <div class="pt-3 pb-2 border-bottom">
+    <div class="section-title">
+      <h2>Crear <span>nuestros roles</span></h2>
+      <p>Crea nuevos roles de nuestro Dash</p>
+    </div>
+    <div class="col-md-11 m-md-auto">
+      <form
+        #frmLogin="ngForm"
+        class="col-md-10"
+        (submit)="frmLogin.form.valid && registro(frmLogin)"
+        novalidate
+      >
+        <legend>ROL</legend>
+        <div class="mb-3">
+          <label for="disabledTextInput" class="form-label">Nombre Rol</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            placeholder="Nombre"
+            #name="ngModel"
+            [(ngModel)]="objRole.nombreRol"
+            [ngClass]="{ 'is-valid': frmLogin.submitted && name.invalid }"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="disabledSelect" class="form-label">Estado Rol</label>
+          <select id="estado" name="estado" class="form-select" #estado="ngModel"  [(ngModel)]="objRole.estadoRol" [ngClass]="{ 'is-valid': frmLogin.submitted && name.invalid }"
+          required>
+          <option value="0">Seleccionar</option>
+          <option value="1">Activo</option>
+          <option value="2">Inactivo</option>
+          </select>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary btn-block mb-0"
+          style="
+            background-color: #ffb03b !important;
+            border-color: #ffb03b !important;
+          "
+        >
+          Crear
+        </button>
+      </form>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,67 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="margin-top: 63px;">
+    <div class="pt-3 pb-2 border-bottom">
+        <div class="section-title">
+            <h2>Listado de <span>nuestros roles</span></h2>
+            <p>
+              Identifica los roles de nuestro Dash
+            </p>
+          </div>
+        <div class="col-md-11 m-md-auto" *ngIf="cargaFinalizada; else spinner">
+            <table class="table table-striped">
+              <thead class="table-warning">
+                <tr>
+                  <th class="text-center" style="width: 7%">Nro</th>
+                  <th style="width: 28%">Nombre</th>
+                  <th style="width: 20%">Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let objRol of arrgloRoles; let i = index">
+                  <td class="align-middle text-center">
+                    <small>{{ i + 1 }}</small>
+                  </td>
+                  <td class="align-middle">
+                    <small>
+                      {{ objRol.nombreRol }} </small
+                    >
+                  </td>
+                  <td class="align-middle">
+                    <span
+                  class="text-success"
+                  *ngIf="objRol.estadoRol == 1"
+                >
+                  <span class="badge-label">Activo &nbsp;</span>
+                  <span class="fas fa-check"></span>
+                </span>
+                <span
+                  class="text-danger"
+                  *ngIf="objRol.estadoRol == 2"
+                >
+                  <span class="badge-label">Inactivo &nbsp;</span>
+                  <span class="fa-thin fa-x"></span>
+                </span>
+                  </td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+    </div>
+</main>
+<ng-template #spinner>
+    <div class="col-md text-center">
+      <div
+        class="spinner-border text-primary ml-auto"
+        style="width: 4rem; height: 4rem"
+        role="status"
+        aria-hidden="true"
+      ></div>
+      <div class="col-md text-center">
+        <span class="text-primary" style="font-size: 25">
+          <h2>Cargando información...</h2>
+        </span>
+      </div>
+    </div>
+  </ng-template>
+  

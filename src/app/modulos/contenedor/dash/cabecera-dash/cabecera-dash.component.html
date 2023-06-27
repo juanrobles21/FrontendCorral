@@ -1,0 +1,35 @@
+<div>
+  <!-- ======= Header ======= -->
+  <nav class="fixed-top navbar navbar-expand-lg navbar-dark bg-dark">
+    <div
+      class="container-fluid container-xl d-flex align-items-center justify-content-between"
+    >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarText"
+        aria-controls="navbarText"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="bi bi-list"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse justify-content-center"
+        id="navbarText"
+      >
+        <div class="logo me-auto">
+          <h1><a href="#" style="cursor: none;">Mi corralito</a></h1>
+        </div>
+        <a style="color: white;">{{objMiSesion.correoMisesion}}</a>
+        
+        <a class="book-a-table-btn scrollto" (click)="sesioncita.salir()" style="cursor: pointer;"
+          >Cerrar sesión</a
+        >
+      </div>
+    </div>
+  </nav>
+  <!-- End Header -->
+</div>
+
